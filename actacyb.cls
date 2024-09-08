@@ -12,7 +12,7 @@
 % * transform this to a dtx to allow automatic documentation with docstrip
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{actacyb}[08/09/2024 v1.5 Acta Cybernetica article class]
+\ProvidesClass{actacyb}[08/09/2024 v2024.3 Acta Cybernetica article class]
 \RequirePackage{amsthm,amssymb,amsmath,ifthen}%,lineno,vruler}
 \RequirePackage[hyphens]{url}
 \LoadClass[10pt,twoside,a4paper]{article}
