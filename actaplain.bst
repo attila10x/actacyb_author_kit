@@ -1108,6 +1108,8 @@ FUNCTION {begin.bib}
 %  "  \providecommand{\doi}[1]{DOI:{\tt~\discretionary{}{}{}\url{#1}}}"
    "  \providecommand{\doi}[1]{DOI:{\tt~\discretionary{}{}{}\href{https://doi.org/#1}{\begin{NoHyper}\url{#1}\end{NoHyper}}}}"
   write$ newline$
+   "  \providecommand{\isbn}[1]{ISBN:{\tt~\discretionary{}{}{}\href{https://isbnsearch.org/isbn/#1}{\begin{NoHyper}\url{#1}\end{NoHyper}}}}"
+  write$ newline$
 }
 
 EXECUTE {begin.bib}
