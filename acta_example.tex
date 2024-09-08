@@ -1,6 +1,7 @@
-\documentclass[theoremcontinuousnumbering,withtitlethanks]{actacyb}
+%\documentclass[theoremcontinuousnumbering,withtitlethanks]{actacyb}
 %\documentclass[theoremsectionnumbering,withtitlethanks]{actacyb}
 %\documentclass[notnumberedtheorems,withtitlethanks]{actacyb}
+\documentclass[withtitlethanks]{actacyb}
 %\documentclass{actacyb}
 
 % Provides line numbers for the referee.
@@ -138,32 +139,35 @@ Thus, the most common environments, such as \verb|definition|, \verb|theorem|, \
 \verb|proposition|, \verb|corollary|, \verb|claim|, \verb|remark|, \verb|example| and \verb|proof| are already defined.
 To define other environments, please use the \verb|\newtheorem{otherenv}[theorem]{Otherenv}|  
 command.
+{\bf Please do not redefine the theoremstyle or theorem numbering!}
 
-Please do not redefine the theoremstyle or theorem numbering. 
 By default, each ``theorem'' type is consecutively numbered:
-\texttt{Theorem 1}, \texttt{Theorem 2}, \texttt{Lemma 1}, etc.
-throughout the paper.
-If you need numbering by sections, you should indicate it as an option to
-\verb|\documentclass| at the beginning of the document:
+\texttt{Theorem 1}, \texttt{Theorem 2}, \texttt{Lemma 1}, etc. throughout the paper.
+You may specify the selection of this behaviour explicitely in \verb|\documentclass| at the beginning of the document as
 
 \begin{verbatim}
-\documentclass[theoremsectionnumbering]{actacyb.cls}
+\documentclass[theoremcontinuousnumbering]{actacyb}
 \end{verbatim}
 
-Not numbered theorem environments can also be used by specifying the option \verb|notnumberedtheorems| for \verb|documentclass|. Such environment names have an ``nn'' prefix, e.g., \verb|nntheorem|, \verb|nndefinition|, \verb|nnremark|.
-If you would like to specify the default numbering behaviour explicitly, use the
-\verb|theoremcontinuousnumbering| option.
+If you need numbering by sections, you should indicate it as an option to
+\verb|\documentclass| as
+
+\begin{verbatim}
+\documentclass[theoremsectionnumbering]{actacyb}
+\end{verbatim}
+
+Not numbered theorem environments can also be used by specifying the option \verb|notnumberedtheorems| for \verb|documentclass|. With theorem numbering selected, it is also possible to use not numbered theorems using the asterisk ('*') at the end of the environment name, e.g., \verb|theorem*|, \verb|definition*|, \verb|remark*|.
 
 The \verb|proof| environment automatically generates the end of proof (qed) symbol
 at the end of the proof. If you don't need this symbol, redefine it to an empty command
 inside the proof environment (for the given proof only) or in the preamble (globally) as \verb|\renewcommand{\qedsymbol}{}|.
 
-By using the \verb|theoremcontinuousnumbering| and \verb|notnumberedtheorems| options, the following commands produce the result below:
+By using a theorem numbering option, the following commands produce the result below:
 
 \begin{verbatim}
-\begin{definition}
-We define....
-\end{definition}
+\begin{definition*}
+We define a not numbered definition...
+\end{definition*}
 
 \begin{theorem}
 If $N=1$, then $P=NP$.
@@ -173,9 +177,9 @@ If $N=1$, then $P=NP$.
 It is easy to see that if $N=1$, then $NP=1\cdot P = P$.
 \end{proof}
 
-\begin{nnremark}
+\begin{remark*}
 This is a not numbered remark.
-\end{nnremark}
+\end{remark*}
 
 \begin{definition}
 We define....
@@ -187,9 +191,9 @@ Let us note that the above theorem is not...
 \end{verbatim}
 
 
-\begin{definition}
-We define....
-\end{definition}
+\begin{definition*}
+We define a not numbered definition...
+\end{definition*}
 
 \begin{theorem}
 If $N=1$, then $P=NP$.
@@ -199,9 +203,9 @@ If $N=1$, then $P=NP$.
 It is easy to see that if $N=1$, then $NP=1\cdot P = P$.
 \end{proof}
 
-\begin{nnremark}
+\begin{remark*}
 This is a not numbered remark.
-\end{nnremark}
+\end{remark*}
 
 \begin{definition}
 We define....
@@ -212,7 +216,7 @@ Let us note that the above theorem is not...
 \end{remark}
 
 By specifying the {\tt theoremsectionnumbering} option at the \verb|documentclass|
-declaration, we would see \textbf{Definition 4.1}, \textbf{Theorem 4.1}, \textbf{Remark}, and \textbf{Remark 4.1} captions here, respectively.
+declaration, we would see \textbf{Definition}, \textbf{Theorem 4.1}, \textbf{Remark}, \textbf{Definition 4.1}, and \textbf{Remark 4.1} captions here, respectively.
 
 
 \section{Equations}

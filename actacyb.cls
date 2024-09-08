@@ -12,7 +12,7 @@
 % * transform this to a dtx to allow automatic documentation with docstrip
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{actacyb}[2022/12/03 v1.42 Acta Cybernetica article class for press]
+\ProvidesClass{actacyb}[08/09/2024 v1.5 Acta Cybernetica article class]
 \RequirePackage{amsthm,amssymb,amsmath,ifthen}%,lineno,vruler}
 \RequirePackage[hyphens]{url}
 \LoadClass[10pt,twoside,a4paper]{article}
@@ -43,18 +43,22 @@
 
 \DeclareOption{notnumberedtheorems}
 {
-  \newtheorem*{nntheorem}{Theorem}
-  \newtheorem*{nndefinition}{Definition}
-  \newtheorem*{nnlemma}{Lemma}
-  \newtheorem*{nnproposition}{Proposition}
-  \newtheorem*{nncorollary}{Corollary}
-  \newtheorem*{nnclaim}{Claim}
-  \theoremstyle{definition}
-  \newtheorem*{nnexample}{Example}
-%  \theoremstyle{remark}
-  \newtheorem*{nnremark}{Remark}
-  \theoremstyle{plain}
+  \setcounter{actasectionstyle}{3}
 }
+
+% Declare not numbered theorem environments
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{claim*}{Claim}
+\theoremstyle{definition}
+\newtheorem*{example*}{Example}
+\theoremstyle{remark}
+\newtheorem*{remark*}{Remark}
+\theoremstyle{plain}
 
 \ExecuteOptions{theoremcontinuousnumbering}
 \ProcessOptions
@@ -166,31 +170,54 @@
 
 \ifthenelse{\value{actasectionstyle} = 1}
 {
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{claim}{Claim}
-\theoremstyle{definition}
-\newtheorem{example}{Example}
-%\theoremstyle{remark}
-\newtheorem{remark}{Remark}
-\theoremstyle{plain}
+  \theoremstyle{plain}
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{definition}{Definition}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{corollary}{Corollary}
+  \newtheorem{claim}{Claim}
+  \theoremstyle{definition}
+  \newtheorem{example}{Example}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \theoremstyle{plain}
 }
+{}
+
+\ifthenelse{\value{actasectionstyle} = 2}
 {
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{definition}{Definition}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{claim}{Claim}[section]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[section]
-%\theoremstyle{remark}
-\newtheorem{remark}{Remark}[section]
-\theoremstyle{plain}
+  \theoremstyle{plain}
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{definition}{Definition}[section]
+  \newtheorem{lemma}{Lemma}[section]
+  \newtheorem{proposition}{Proposition}[section]
+  \newtheorem{corollary}{Corollary}[section]
+  \newtheorem{claim}{Claim}[section]
+  \theoremstyle{definition}
+  \newtheorem{example}{Example}[section]
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}[section]
+  \theoremstyle{plain}
 }
+{}
+
+\ifthenelse{\value{actasectionstyle} = 3}
+{
+  \theoremstyle{plain}
+  \newtheorem*{theorem}{Theorem}
+  \newtheorem*{definition}{Definition}
+  \newtheorem*{lemma}{Lemma}
+  \newtheorem*{proposition}{Proposition}
+  \newtheorem*{corollary}{Corollary}
+  \newtheorem*{claim}{Claim}
+  \theoremstyle{definition}
+  \newtheorem*{example}{Example}
+  \theoremstyle{remark}
+  \newtheorem*{remark}{Remark}
+  \theoremstyle{plain}
+}
+{}
 
 \ifthenelse{\value{actatitlethanks} = 1}
 {
