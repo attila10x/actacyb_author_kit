@@ -1,4 +1,4 @@
-%% actacybpresshref.cls -- Style file for Acta Cybernetica articles -- preparing for press
+%% actacyb.cls -- Style file for Acta Cybernetica articles
 %%
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.2
