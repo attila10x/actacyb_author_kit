@@ -12,7 +12,7 @@
 % * transform this to a dtx to allow automatic documentation with docstrip
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{actacyb}[13/09/2024 v2024.4 Acta Cybernetica article class]
+\ProvidesClass{actacyb}[14/09/2024 v2024.41 Acta Cybernetica article class]
 \RequirePackage{amsthm,amssymb,amsmath,ifthen}%,lineno,vruler}
 \RequirePackage[hyphens]{url}
 \LoadClass[10pt,twoside,a4paper]{article}
@@ -20,8 +20,8 @@
 \setcounter{actasectionstyle}{1}
 \newcounter{actatitlethanks}
 \setcounter{actatitlethanks}{2}
-\newcounter{actamanuscriptversion}
-\setcounter{actamanuscriptversion}{0}
+\newcounter{actamanuscriptstatus}
+\setcounter{actamanuscriptstatus}{0}
   
 \DeclareOption{withtitlethanks}
 {
@@ -33,14 +33,19 @@
   \setcounter{actatitlethanks}{2}
 }
 
-\DeclareOption{onlinefirstversion}
+\DeclareOption{copyediting}
 {
-  \setcounter{actamanuscriptversion}{1}
+  \setcounter{actamanuscriptstatus}{1}
 }
 
-\DeclareOption{finalversion}
+\DeclareOption{onlinefirst}
 {
-  \setcounter{actamanuscriptversion}{2}
+  \setcounter{actamanuscriptstatus}{2}
+}
+
+\DeclareOption{final}
+{
+  \setcounter{actamanuscriptstatus}{3}
 }
 
 \DeclareOption{theoremcontinuousnumbering}
@@ -139,19 +144,22 @@
 \newcommand{\thankstext}[2]{\footnotetext[#1]{#2}}
 
 \newcommand{\ps@ac@titleheadings}{
-  \ifthenelse{\value{actamanuscriptversion} = 0}{
+  \ifthenelse{\value{actamanuscriptstatus} = 0}{
   \renewcommand{\@oddhead}{\underline{\centerline{Acta Cybernetica --- {\it manuscript submission} --- pages \ac@pages}}}
   }{}
-  \ifthenelse{\value{actamanuscriptversion} = 1}{
+  \ifthenelse{\value{actamanuscriptstatus} = 1}{
+    \renewcommand{\@oddhead}{\underline{\centerline{Acta Cybernetica --- {\it copyediting} --- pages \ac@pages}}}
+  }{}
+  \ifthenelse{\value{actamanuscriptstatus} = 2}{
     \renewcommand{\@oddhead}{\underline{\centerline{Acta Cybernetica --- {\it online--first paper version} --- pages \ac@pages}}}
   }{}
-  \ifthenelse{\value{actamanuscriptversion} = 2}{
+  \ifthenelse{\value{actamanuscriptstatus} = 3}{
     \renewcommand{\@oddhead}{\underline{\centerline{Acta Cybernetica {\bf \ac@volume} (\ac@year) \ac@pages}}}
   }{}
   \renewcommand{\@evenhead}{\@oddhead}
 % the line number is removed from the first page of the paper 2007/10/19
 % \renewcommand{\@oddfoot}{\centerline{\thepage}}
-  \ifthenelse{\value{actamanuscriptversion} = 0} {
+  \ifthenelse{\value{actamanuscriptstatus} = 0} {
   \renewcommand{\@oddfoot}{\rightline{\footnotesize DOI not yet assigned.}}
   }
   {
