@@ -12,7 +12,12 @@
 
 \usepackage{graphicx, algorithm, algorithmic}
 % Please use only packages that are absolutely necessary!
-% Avoid modifying the page size and layout!
+% Avoid modifying page size and layout!
+
+% Defining and renewing autoref names of some elements.
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Subsection}
+\newcommand{\algorithmautorefname}{Algorithm}
 
 % Class file actacyb.cls requires the hyperref package.
 % Here we define metadata and colors used by hyperref.
@@ -72,8 +77,48 @@ Please do not use strange formats or non-standard packages. Avoid commands that 
 The article in the first phase should be written including the \verb|\showframe| package that makes the overfull boxes visible. Before sending the final version of your manuscript, please be sure that there are no such overfull boxes.
 
 
-\section{Pictures and figures}
+\section{Using references}
+
+By default, Acta Cybernetica uses the \verb|hyperref| package, making it easy to create links to various targets within the document. Hyperref displays these links in blue. These links are clickable and will navigate you to the target, either within or outside the document.
+
+You can define a URL using the \verb|\url| command. URLs are usually given in footnotes. For example:
+
+\begin{verbatim}
+The Acta Cybernetica homepage\footnote{
+\url{https://cyber.bibl.u-szeged.hu/index.php/actcybern/index}}
+is the starting point for authors.
+\end{verbatim}
+
+The Acta Cybernetica homepage\footnote{
+\url{https://cyber.bibl.u-szeged.hu/index.php/actcybern/index}}
+is the starting point for authors.
+
+\medskip
+Various elements in the document, such as figures, tables, sections, can be labelled using the \verb|\label| command. For example, \autoref{sec:theorems} is defined as follows:
+
+\begin{verbatim}
+\section{Theorems and Lemmas}\label{sec:theorems}
+\end{verbatim}
+
+These labels can be refernced from the text using either the commands \verb|\ref| or \verb|\autoref|. The former provides only the number of the element, while the latter also inserts the element's type as a string. For example:
+
+\begin{verbatim}
+You can read more about how to reference theorems and lemmas
+in \autoref{sec:theorems}.
+The \verb|\ref| command only provides the defined number,
+in this case \ref{sec:theorems}.
+\end{verbatim}
+
+You can read more about how to reference theorems and lemmas in \autoref{sec:theorems}.
+The \verb|\ref| command only provides the defined number, in this case \ref{sec:theorems}.
+
+\medskip
+You will find more examples of referencing in the following sections.
+
+\section{Pictures and figures}\label{sec:figures}
 Every figure should appear in the \texttt{figure} environment, i.e.\ must be defined between \verb|\begin{figure}| and \verb|\end{figure}|. You should provide where you prefer to put your figure \verb|[htbp]| (h -- here, t -- top, b -- bottom, p -- page), e.g., \verb|\begin{figure}[!ht]| (insert figure here or top of next page if does not fit).
+
+You can control the size of the included image in several ways as an option to \verb|\includegraphics|. \verb|scale| option defines the scaling factor of the image. \verb|width| specifies the width of the image which can be combined with the value of \verb|\linewidth|.
 
 Primarily we use \verb|pdflatex| to generate a PDF result of your document.
 As such, preferably include images in Portable Network Graphics (PNG) or Portable Document Format (PDF) formats with the e.g., \verb|\includegraphics{example.png}| command. 
@@ -81,22 +126,23 @@ Alternatively \LaTeX\ figures, PostScript(.ps) or Encapsulated PostScript (.eps)
 
 Using drawing packages such as {\verb|tikz|} or calling shell executables such as \linebreak {\verb|pygmentize|} may cause incompatibilities. If possible, try to generate a separate PDF file of these figures and include this PDF in the manuscript.
 
-Before \verb|\end{figure}| give a title to your figure within the \verb|\caption{...}| command. To be able to refer to this figure later, label it with a unique identifier using the  \verb|\label{uniquelabel}| command. In the text you can refer to it with \verb|\ref{uniquelabel}|. Let us consider the following example:
+Before \verb|\end{figure}| give a title to your figure within the \verb|\caption{...}| command. To be able to refer to this figure later, label it with a unique identifier using the  \verb|\label{uniquelabel}| command. In the text you can refer to it with \verb|\autoref{uniquelabel}|.
+Let us consider the following example:
 
 \begin{verbatim}
-Figure \ref{fig:example} shows an example.
-\begin{figure}[ht]
+An example can be seen in \autoref{fig:example}.
+\begin{figure}[!ht]
 \begin{center}
-\includegraphics[scale=1.0]{example.png}
+\includegraphics[width=.75\linewidth]{example.png}
 \end{center}
 \caption{The example figure\label{fig:example}}
 \end{figure}
 \end{verbatim}
 
-Figure \ref{fig:example} shows an example.
-\begin{figure}[ht]
+An example can be seen in \autoref{fig:example}.
+\begin{figure}[!ht]
 \begin{center}
-\includegraphics[scale=1.0]{example.png}
+\includegraphics[width=.75\linewidth]{example.png}
 \end{center}
 \caption{The example figure\label{fig:example}}
 \end{figure}
@@ -108,8 +154,8 @@ Similarly to the procedure with figures, use the \verb|table| environment to cre
 Normally, the title appears above the table, therefore put the \verb|\caption{...}| command right after \verb|\begin{table}[htbp]|. Use the \verb|tabular| environment to prepare your table.
 
 \begin{verbatim}
-\begin{table}[ht]
-\caption{This is an example table.}\label{tab:res}
+\begin{table}[!ht]
+\caption{This is an example table\label{tab:res}}
 \begin{center}
 \begin{tabular}{l|rr}
 Problem & Time(s) & Memory(MB) \\ \hline
@@ -118,11 +164,11 @@ hard    & 2359 & 6820 \\
 \end{tabular}
 \end{center}
 \end{table}
-Table \ref{tab:res} shows an example table.
+\autoref{tab:res} shows an example table.
 \end{verbatim}
 
-\begin{table}[ht]
-\caption{This is an example table.}\label{tab:res}
+\begin{table}[!ht]
+\caption{This is an example table\label{tab:res}}
 \begin{center}
 \begin{tabular}{l|rr}
 Problem & Time(s) & Memory(MB) \\ \hline
@@ -131,10 +177,10 @@ hard    & 2359 & 6820 \\
 \end{tabular}
 \end{center}
 \end{table}
-Table \ref{tab:res} shows an example table.
+\autoref{tab:res} shows an example table.
 
 
-\section{Theorems and Lemmas}
+\section{Theorems and Lemmas}\label{sec:theorems}
 
 In the \verb|actacyb| class the \verb|amsthm| package is included.
 Thus, the most common environments, such as \verb|definition|, \verb|theorem|, \verb|lemma|,
@@ -232,14 +278,14 @@ other \verb|amstex| environments, such as \verb|multiline|, \verb|align|, \verb|
 are also recommended.
 
 \begin{verbatim}
-The function $\Phi$ is defined in formula \ref{eq:phi}.
+The function $\Phi$ is defined in \autoref{eq:phi}.
 
 \begin{equation}
 \Phi(x)=\prod_{i=1}^n\sin(x_i)\cos(x_i-\frac{1}{3}\pi)\label{eq:phi}
 \end{equation}
 \end{verbatim}
 
-The function $\Phi$ is defined in formula (\ref{eq:phi}).
+The function $\Phi$ is defined in \autoref{eq:phi}.
 
 \begin{equation}
 \Phi(x)=\prod_{i=1}^n\sin(x_i)\cos(x_i-\frac{1}{3}\pi)\label{eq:phi}
@@ -338,11 +384,11 @@ is applied in Step \ref{step:selrule}:
 list ${\cal L}_Q$ := $\{\}$     
 \WHILE{( ${\cal L}_W \neq \emptyset$ )} \label{alg:igoend}
   \STATE  Select an interval $X$ from ${\cal L}_W$
-                  \label{step:selrule} \COMMENT{Selection rule ~}  
-  \STATE Compute $lbf(X)$ \COMMENT{Bounding rule ~}		  
+                  \label{step:selrule} \COMMENT{Selection rule}
+  \STATE Compute $lbf(X)$ \COMMENT{Bounding rule}
   \IF[Elimination rule]{$X$ cannot be eliminated}
     \STATE Divide $X$ into $X^j,\ j=1,\dots, p$, subintervals   
-                                        \COMMENT{Division rule ~}
+                                        \COMMENT{Division rule}
     \FOR{$j=1,\ldots,p$}
       \IF[Termination rule]{$X^j$ satisfies the termination 
                                                        criterion}
@@ -359,7 +405,8 @@ list ${\cal L}_Q$ := $\{\}$
 \end{verbatim}
 
 
-A general Interval Branch and Bound algorithm is shown in Algorithm~\ref{alg:ibb}. One of the following selection rules is applied in Step \ref{step:selrule}.
+A general Interval Branch and Bound algorithm is shown in \autoref{alg:ibb}. One of the following selection rules is applied in \hyperref[step:selrule]{Step~\ref{step:selrule}}.
+%Step~\ref{step:selrule}.
 
 \begin{algorithm}[ht!]
 \caption{ A general interval B\&B algorithm.} 
@@ -369,10 +416,10 @@ A general Interval Branch and Bound algorithm is shown in Algorithm~\ref{alg:ibb
 \begin{algorithmic}[1]
 \STATE Set the working list ${\cal L}_W$ := $\{S\}$ and the final list ${\cal L}_Q$ := $\{\}$     
 \WHILE{( ${\cal L}_W \neq \emptyset$ )} \label{alg:igoend}
-  \STATE  Select an interval $X$ from ${\cal L}_W$ \label{step:selrule}\COMMENT{Selection rule ~}  
-  \STATE Compute $lbf(X)$ \COMMENT{Bounding rule ~}		  
+  \STATE  Select an interval $X$ from ${\cal L}_W$ \label{step:selrule}\COMMENT{Selection rule}  
+  \STATE Compute $lbf(X)$ \COMMENT{Bounding rule}
   \IF[Elimination rule]{$X$ cannot be eliminated}
-    \STATE Divide $X$ into $X^j,\ j=1,\dots, p$, subintervals   \COMMENT{Division rule ~}
+    \STATE Divide $X$ into $X^j,\ j=1,\dots, p$, subintervals   \COMMENT{Division rule}
     \FOR{$j=1,\ldots,p$}
       \IF[Termination rule]{$X^j$ satisfies the termination criterion}
         \STATE Store $X^j$ in ${\cal L}_W$ 
@@ -389,7 +436,7 @@ A general Interval Branch and Bound algorithm is shown in Algorithm~\ref{alg:ibb
 
 \section{Bibliography}
 For the bibliography, it is mandatory to use \verb|bibtex| to generate the items to achieve a consistent style!
-The \verb|actaplain.bst| file defines the style descriptions that can be used like this:
+The \verb|actaabbrv.bst| file defines the style descriptions that can be used like this:
 
 \begin{verbatim}
 \bibliographystyle{actaabbrv}
@@ -402,8 +449,8 @@ an article in a book \cite{Fuchi1996a}, a chapter in a book \cite{CORR96}, an un
 
 It is necessary to provide detailed description of the referred items.
 Make sure that only those items are included in the \verb|bibtex| file that are actually cited from your manuscript!
-Please look up and provide the DOI whenever possible! If not available, provide an URL.
-\verb|BibTeX| generates clickable DOI and URL links. Check that they work correctly!
+Please look up and provide the DOI whenever possible! If not available, provide an URL or ISBN.
+\verb|BibTeX| generates clickable DOI, URL and ISBN links. Check that they work correctly!
 
 {
 \bibliographystyle{actaabbrv}
