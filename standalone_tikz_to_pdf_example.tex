@@ -1,0 +1,37 @@
+\documentclass[crop,tikz]{standalone}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    % Level 1: Distance between the main Left and Right branches
+    level 1/.style={sibling distance=4.5cm, level distance=1.5cm},
+    % Level 2: Distance between individual leaves under a child
+    level 2/.style={sibling distance=2.2cm, level distance=1.5cm},
+    % Clean, professional node styling
+    every node/.style={
+        rectangle, 
+        rounded corners,
+        draw=teal!80, 
+        fill=teal!5, 
+        thick, 
+        inner sep=6pt,
+        font=\sffamily\small
+    }
+]
+
+% Root Node
+\node {Root Text}
+    % Left Branch
+    child { node {Left Child} 
+        child { node {Leaf One} }
+        child { node {Leaf Two} }
+    }
+    % Right Branch
+    child { node {Right Child} 
+        child { node {Leaf Three} }
+        child { node {Leaf Four} }
+    };
+
+\end{tikzpicture}
+
+\end{document}

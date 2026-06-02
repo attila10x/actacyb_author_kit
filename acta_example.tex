@@ -116,15 +116,13 @@ The \verb|\ref| command only provides the defined number, in this case \ref{sec:
 You will find more examples of referencing in the following sections.
 
 \section{Pictures and figures}\label{sec:figures}
-Every figure should appear in the \texttt{figure} environment, i.e.\ must be defined between \verb|\begin{figure}| and \verb|\end{figure}|. You should provide where you prefer to put your figure \verb|[htbp]| (h -- here, t -- top, b -- bottom, p -- page), e.g., \verb|\begin{figure}[!ht]| (insert figure here or top of next page if does not fit).
+Every figure should appear in the \verb|figure| environment, i.e.\ must be defined between \verb|\begin{figure}| and \verb|\end{figure}|. You should provide where you prefer to put your figure \verb|[htbp]| (h -- here, t -- top, b -- bottom, p -- page), e.g., \verb|\begin{figure}[!ht]| (insert figure here or top of next page if does not fit).
 
 You can control the size of the included image in several ways as an option to \verb|\includegraphics|. \verb|scale| option defines the scaling factor of the image. \verb|width| specifies the width of the image which can be combined with the value of \verb|\linewidth|.
 
 Primarily we use \verb|pdflatex| to generate a PDF result of your document.
 As such, preferably include images in Portable Network Graphics (PNG) or Portable Document Format (PDF) formats with the e.g., \verb|\includegraphics{example.png}| command. 
 Alternatively \LaTeX\ figures, PostScript(.ps) or Encapsulated PostScript (.eps) images can also be used with \verb|latex| used for compiling.
-
-Using drawing packages such as {\verb|tikz|} or calling shell executables such as \linebreak {\verb|pygmentize|} may cause incompatibilities. If possible, try to generate a separate PDF file of these figures and include this PDF in the manuscript.
 
 Before \verb|\end{figure}| give a title to your figure within the \verb|\caption{...}| command. To be able to refer to this figure later, label it with a unique identifier using the  \verb|\label{uniquelabel}| command. In the text you can refer to it with \verb|\autoref{uniquelabel}|.
 Let us consider the following example:
@@ -147,6 +145,16 @@ An example can be seen in \autoref{fig:example}.
 \caption{The example figure\label{fig:example}}
 \end{figure}
 
+Using drawing packages such as {\verb|tikz|} or calling shell executables such as \linebreak {\verb|pygmentize|} may cause incompatibilities. Instead, generate separate PDF files of these figures and include these in the manuscript.
+
+The \verb|standalone_tikz_to_pdf_example.tex| source file shows how to generate such a PDF that can easily be included in the manuscript (\autoref{fig:standalone_tikz_pdf_example}).
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=.75\linewidth]{standalone_tikz_to_pdf_example.pdf}
+\end{center}
+\caption{Standalone PDF generated separately using \texttt{tikz}\label{fig:standalone_tikz_pdf_example}}
+\end{figure}
 
 \section{Tables}
 
